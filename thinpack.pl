@@ -4,9 +4,18 @@ use warnings;
 
 use PPI;
 
-$ARGV[0] or die "Usage: $0 <script.pl>\n";
+$ARGV[0] or die "Usage: $0 [options] <script.pl>\n";
+my($args, $file);
+if(@ARGV > 1) {
+    $file = pop;
+    $args = join ' ', @ARGV;
+}
+else {
+    $file = shift;
+    $args = '';
+}
 
-my $ppi = PPI::Document->new($ARGV[0]);
+my $ppi = PPI::Document->new($file);
 my $includes = $ppi->find('PPI::Statement::Include');
 
 my $deps = join ' ',
@@ -14,9 +23,9 @@ my $deps = join ' ',
     map { $_->module }
     @$includes;
 
-my $inject = join '', map { s/%%DEPS%%/$deps/; $_ } <DATA>;
+my $inject = join '', map { s/%%DEPS%%/$deps/; s/%%ARGS%%/$args/g; $_ } <DATA>;
 
-open my $script, '<', $ARGV[0] or die "Cannot open $ARGV[0]: $!\n";
+open my $script, '<', $file or die "Cannot open $file: $!\n";
 my $not_injected = 1;
 while (my $line = <$script>) {
     if ($line =~ /^use / && $not_injected) {
@@ -45,9 +54,9 @@ __DATA__
                                      "\r\n";
             my $cpanm = do { local $/; <$sock> };
             close $sock;
-            open my $sudoperl, '|perl - --self-upgrade --sudo';
-            print $sudoperl $cpanm;
-            close $sudoperl;
+            open my $perl, '|perl - --self-upgrade %%ARGS%%';
+            print $perl $cpanm;
+            close $perl;
         }
-        system(qw/cpanm --sudo/, @inst);
+        system(qw/cpanm %%ARGS%%/, @inst);
     }
