@@ -46,6 +46,7 @@ __DATA__
     	push @inst, $dep if $@;
     }
     if (@inst) {
+        local $@;
     	eval "require App::cpanminus";
     	if ($@) {
             my $sock = IO::Socket::INET->new('kapranoff.ru:80');
