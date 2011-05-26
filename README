@@ -13,4 +13,4 @@ HTTP client.
 thinpack-ed scripts are easy to distribute.
 
 BUGS:
-	No Windows support. Rudimentary parsing. Default --sudo for cpanm. Patches are welcome.
+	No Windows support. Rudimentary parsing. Default --sudo for cpanm. Donwloading cpanminus from third-party source. Patches are welcome.
