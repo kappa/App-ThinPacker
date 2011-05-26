@@ -65,7 +65,7 @@ sub run {
     my $includes = $ppi->find('Statement::Include');
 
     my $deps = join ' ',
-               grep { $_ ne 'strict' && $_ ne 'warnings' }
+               grep { $_ !~ /^(?:strict|warnings|diagnostics|base|integer)$/ }
                map { $_->module }
                @$includes;
 
