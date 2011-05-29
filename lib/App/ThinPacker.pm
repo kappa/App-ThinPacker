@@ -1,14 +1,15 @@
 package App::ThinPacker;
+use 5.8;
 
 =pod
 
 =head1 NAME
 
-App::ThinPacker - enable your scripts to autoinstall their dependicies
+App::ThinPacker - enable your scripts to autoinstall their dependencies
 
 =head1 DESCRIPTION
 
-Enables your scripts to autoinstall their dependecies by injecting a small piece of code which downloads cpanminus and uses it to install all the depenencies.
+Enables your scripts to autoinstall their dependencies by injecting a small piece of code which downloads L<cpanminus> and uses it to install all the depenencies.
 
 =head1 SYNOPSIS
 
@@ -18,7 +19,7 @@ Enables your scripts to autoinstall their dependecies by injecting a small piece
 
 L<App::FatPacker>
 
-L<App::cpanmminus>
+L<App::cpanminus>
 
 =head1 BUGS AND TODO
 
@@ -36,7 +37,7 @@ L<App::cpanmminus>
 
 =head1 AUTHOR
 
-Alex Kapranoff
+Alex Kapranoff E<lt>kappa@cpan.orgE<gt>
 
 =head1 CONTRIBUTORS
 
@@ -55,7 +56,7 @@ use PPI;
 use Pod::Find;
 use Pod::Usage;
 
-our $VERSION = '0.01_1';
+our $VERSION = '0.1';
 
 sub run {
     my $arg = shift or usage();
