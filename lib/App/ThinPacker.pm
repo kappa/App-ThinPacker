@@ -1,5 +1,5 @@
 package App::ThinPacker;
-use 5.8;
+use 5.8.0;
 
 =pod
 
@@ -56,7 +56,7 @@ use PPI;
 use Pod::Find;
 use Pod::Usage;
 
-our $VERSION = '0.1';
+our $VERSION = '0.11';
 
 sub run {
     my $arg = shift or usage();

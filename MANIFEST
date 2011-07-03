@@ -14,4 +14,4 @@ MANIFEST			This list of files
 META.yml
 README
 script/thinpack
-.gitignore
+t/00-load.t

@@ -17,6 +17,7 @@ name: App-ThinPacker
 no_index:
   directory:
     - inc
+    - t
 requires:
   PPI: 0
   Pod::Find: 0
@@ -24,4 +25,4 @@ requires:
   perl: 5.8.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.1
+version: 0.11
